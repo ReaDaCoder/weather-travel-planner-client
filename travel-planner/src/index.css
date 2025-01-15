@@ -1,5 +1,12 @@
 h1{
   color: blueviolet;
+  text-align: center;
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
  }
  .search-bar{
   text-align: center;
@@ -17,6 +24,7 @@ h1{
 h2{
   margin: 0%;
   padding: 0%;
+  text-align: center;
 }
 
 .search-btn{
