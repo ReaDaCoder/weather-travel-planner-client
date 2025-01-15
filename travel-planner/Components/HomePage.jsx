@@ -1,22 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import "../src/App.css";
+import Fahrenheit from './Fahrenheight';
 import axios from 'axios';
-import WeatherIcon from './WeatherIcon';
+import WeatherIcon from './WeatherIcone';
 
 export default function HomePage() {
     const [weatherData, setWeatherData] = useState({ ready: false });
+    const [temperature, setTemperature] = useState(null);
 
-    let city = "London";
+    useEffect(() => {
+      let form = document.querySelector("#search-form");
+      if (form) {
+          form.addEventListener("submit", searchButton);
+      }
+  
+      return () => {
+          if (form) {
+              form.removeEventListener("submit", searchButton);
+          }
+      }
+  }, []);
+  
+
+    let city = document.querySelector("#city");
     let apiKey = "5d7b9ccc3e46361f64b317d8161bb16e";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},uk&appid=${apiKey}&units=metric`;
 
+    function getResponse(response) {
+      console.log(response.data);
+      setWeatherData({
+          ready: true,
+          coordinates: response.data.coord,
+          temperature: response.data.main.temp,
+          humidity: response.data.main.humidity,
+          description: response.data.weather[0].description,
+          icon: response.data.weather[0].icon,
+          wind: response.data.wind.speed,
+          city: response.data.name,
+      });
+
+      setTemperature(response.data.main.temp);
+  }
+
+  const searchButton = (event) => {
+    event.preventDefault();
+    let userInput = document.querySelector("#search-input");
+    let h2 = document.querySelector("#city");
+
+    //let h1 = document.querySelector("h1");
+  if (input.value) {
+    h2.innerHTML = `${userInput.value}`;
+    searchCity(input.value);
+  } else {
+    h2.innerHTML = null;
+    alert("please enter a city");
+  }
+}
 
   return (
     <>
-      <h1>Hello World</h1>
+      <h1>Travel Buddy</h1>
       <div className="search-bar">
-        <input className="input" type="text" placeholder="Search.." />
+        <form className="search-form">
+        <input className="search-input" id="search-input" type="text" placeholder="Search.." />
         <button className="search-btn">Search</button>
+        </form>
       </div>
       <div className="weather-box">
         <h2>Weather Box</h2>
