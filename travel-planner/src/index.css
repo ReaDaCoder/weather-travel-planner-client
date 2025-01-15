@@ -1,0 +1,41 @@
+h1{
+  color: blueviolet;
+ }
+ .search-bar{
+  text-align: center;
+ }
+ .input{
+  padding: 18px;
+  border: none;
+  margin-right: 12px;
+  border-radius: 12px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: white;
+}
+
+h2{
+  margin: 0%;
+  padding: 0%;
+}
+
+.search-btn{
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background-color: blue;
+}
+
+.weather-box{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.58);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.8px);
+-webkit-backdrop-filter: blur(11.8px);
+border: 1px solid rgba(255, 255, 255, 0.09);
+padding: 150px;
+margin-top: 55px;
+margin-left: 200px;
+margin-right: 200px;
+}
