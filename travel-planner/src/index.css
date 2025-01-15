@@ -7,6 +7,7 @@ h1{
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
+    font-size: 60px;
  }
  .search-bar{
   text-align: center;
@@ -47,3 +48,30 @@ margin-top: 55px;
 margin-left: 200px;
 margin-right: 200px;
 }
+
+.forecast-day {
+  font-weight: bold;
+}
+
+.forecast-max {
+  color: red;
+  font-weight: bold;
+}
+
+.forecast-min {
+  color: blue;
+  font-style: italic;
+}
+
+.card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
