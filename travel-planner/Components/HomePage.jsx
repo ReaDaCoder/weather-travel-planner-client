@@ -110,6 +110,7 @@ export default function HomePage() {
     return (
         <>
             <h1>Travel Buddy</h1>
+            <hr/>
             <div className="search-bar">
                 <form className="search-form" id="search-form">
                     <input
