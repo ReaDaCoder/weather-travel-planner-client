@@ -67,9 +67,11 @@ export default function HomePage() {
 
     function getResponse(response) {
         console.log(response.data);
+        const coordinates = response.data.coord;
         setWeatherData({
             ready: true,
-            coordinates: response.data.coord,
+            coordinates,
+            //coordinates: response.data.coord,
             temperature: response.data.main.temp,
             humidity: response.data.main.humidity,
             description: response.data.weather[0].description,
@@ -80,6 +82,7 @@ export default function HomePage() {
 
         setTemperature(response.data.main.temp);
         setCity(response.data.name);
+        getForecast(coordinates);
     }
 
     function searchCity(city) {
@@ -99,11 +102,6 @@ export default function HomePage() {
             alert("Please enter a city");
         }
     };
-
-    let activities = [
-      ["Go hiking", "Have a picnic in the park", "Visit a beach or go swimming", "Explore a botanical garden or nature reserve"],
-      ["Take a leisurely walk or jog", "Visit an art gallery or museum"]
-  ];
   
     
 
@@ -125,10 +123,34 @@ export default function HomePage() {
             <div className="weather-box">
                 <h2 id="city">{city ? city : "Enter a city to display"}</h2> 
                 {temperature !== null && <h2>{Math.round(temperature)}°C</h2>}
+                <div className='activity'></div>
                 <h2>6 Days Forecast</h2>
                 <div className="row">{renderForecast()}</div>
+                <div className="forecast-container">
+    {forecastData.length > 0 ? (
+      forecastData.map((forecastDay, index) => (
+        <div className="forecast-box" key={index}>
+          <h3 className="forecast-day">{dayFormat(forecastDay.dt)}</h3>
+          <img
+            src={`http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png`}
+            alt="Weather icon"
+            className="forecast-icon"
+          />
+          <p className="forecast-temp">
+            <span className="forecast-max">
+              {Math.round(forecastDay.temp.max)}°C
+            </span> / 
+            <span className="forecast-min">
+              {Math.round(forecastDay.temp.min)}°C
+            </span>
+          </p>
+        </div>
+      ))
+    ) : (
+      <p>Please search for a city to see the forecast</p>
+    )}
+  </div>
             </div>
-            <div className='activity'></div>
         </>
     );
 }
