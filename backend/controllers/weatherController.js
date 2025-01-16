@@ -12,6 +12,8 @@ const getWeather = async(req, res) => {
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=metric`
         );
 
+
+
         res.status(200).json({
             current: weatherResponse.data,
             forecast: forecastResponse.data,
